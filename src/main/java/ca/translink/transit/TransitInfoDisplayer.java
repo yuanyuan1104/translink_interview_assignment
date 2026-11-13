@@ -15,19 +15,15 @@ public class TransitInfoDisplayer {
             VehiclePosition vp = entity.getVehicle();
 
             String routeId = vp.getTrip().getRouteId();
-            String busName = RouteMap.getRouteName(routeId);
-            if (busName == null) {
-                busName = "";
+            String routeNumber = RouteMap.getRouteName(routeId);
+            if (routeNumber == null) {
+                routeNumber = "";
             }
 
             String busId = vp.getVehicle().getId();
-            if (busId == null) {
-                busId = "";
-            }
 
             System.out.println("Vehicle ID: " + busId);
-            System.out.println("Bus name: " + busName);
-            System.out.println("Route number: " + routeId);
+            System.out.println("Route Number: " + routeNumber);
             System.out.println("Direction: " + vp.getTrip().getDirectionId());
             System.out.println("Timestamp: " + vp.getTimestamp());
             System.out.println("Latitude: " + vp.getPosition().getLatitude());
