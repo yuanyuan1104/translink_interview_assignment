@@ -3,6 +3,19 @@
   <groupId>translink_interview_assignment</groupId>
   <artifactId>translink_interview_assignment</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.mobilitydata</groupId>
+      <artifactId>gtfs-realtime-bindings</artifactId>
+      <version>0.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.11.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>
