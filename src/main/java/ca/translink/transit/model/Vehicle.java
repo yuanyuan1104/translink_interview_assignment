@@ -1,4 +1,4 @@
-package ca.translink.transit;
+package ca.translink.transit.model;
 
 public class Vehicle {
 
