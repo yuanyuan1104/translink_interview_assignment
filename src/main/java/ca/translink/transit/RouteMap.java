@@ -9,7 +9,8 @@ import java.util.Map;
 public class RouteMap {
 
     private static final String ROUTES_FILE = "routes.txt";
-    private static final Map<String, String> routeMap = new HashMap<>();
+    private static final Map<String, String> routeIdMap = new HashMap<>();
+    private static final Map<String, String> routeNameMap = new HashMap<>();
 
     static {
         try (InputStream input = RouteMap.class.getClassLoader().getResourceAsStream(ROUTES_FILE);
@@ -22,7 +23,10 @@ public class RouteMap {
                 String[] columns = line.split(",");
                 String routeId = columns[0];
                 String shortName = columns[2];
-                routeMap.put(shortName, routeId);
+                if (!shortName.isEmpty() && !routeId.isEmpty()) {
+                    routeIdMap.put(shortName, routeId);
+                    routeNameMap.put(routeId, shortName);
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to load routes file");
@@ -30,6 +34,10 @@ public class RouteMap {
     }
 
     public static String getRouteId(String shortName) {
-        return routeMap.get(shortName);
+        return routeIdMap.get(shortName);
+    }
+
+    public static String getRouteName(String routeId) {
+        return routeNameMap.get(routeId);
     }
 }

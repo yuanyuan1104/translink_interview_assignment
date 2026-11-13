@@ -17,7 +17,8 @@ public class TransitInfoRetrieverApp {
 	        TransitInfoProcessor processor = new TransitInfoProcessor(feed);
 	        List<FeedEntity> onRoute = processor.filterByRoute(LINE99);
             List<FeedEntity> uniqueBuses = processor.filterUniqueBuses(onRoute);
-	        System.out.println(uniqueBuses.size());
+            TransitInfoDisplayer displayer = new TransitInfoDisplayer();
+            displayer.display(uniqueBuses);
 		} catch (Exception e) {
 			 e.printStackTrace();
 		}
