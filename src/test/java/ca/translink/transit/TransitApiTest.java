@@ -40,11 +40,14 @@ public class TransitApiTest {
     public void testResponseDecode() throws Exception {
         TransitInfoRetriever retriever = new TransitInfoRetriever();
         byte[] data = retriever.fetch();
-
         ResponseDecoder decoder = new ResponseDecoder();
-        FeedMessage feed = decoder.decode(data);
 
-        assertNotNull(feed, "Decoded FeedMessage should not be null");
+        try {
+            FeedMessage feed = decoder.decode(data);
+            assertNotNull(feed, "Decoded FeedMessage should not be null");
+        } catch (Exception e) {
+            fail("Response could not be decoded as a valid FeedMessage");
+        }
     }
 
     // The Route 99 vehicle list contains no duplicate vehicle IDs
