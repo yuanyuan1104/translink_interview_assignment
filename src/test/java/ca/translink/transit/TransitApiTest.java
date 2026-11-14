@@ -38,11 +38,10 @@ public class TransitApiTest {
     // The response can be decoded as a valid FeedMessage
     @Test
     public void testResponseDecode() throws Exception {
-        TransitInfoRetriever retriever = new TransitInfoRetriever();
-        byte[] data = retriever.fetch();
-        ResponseDecoder decoder = new ResponseDecoder();
-
         try {
+            TransitInfoRetriever retriever = new TransitInfoRetriever();
+            byte[] data = retriever.fetch();
+            ResponseDecoder decoder = new ResponseDecoder();
             FeedMessage feed = decoder.decode(data);
             assertNotNull(feed, "Decoded FeedMessage should not be null");
         } catch (Exception e) {
@@ -53,15 +52,20 @@ public class TransitApiTest {
     // The Route 99 vehicle list contains no duplicate vehicle IDs
     @Test
     public void testNoDuplicateID() throws Exception {
-        TransitInfoRetriever retriever = new TransitInfoRetriever();
-        byte[] data = retriever.fetch();
+        List<FeedEntity> uniqueBuses;
+        try {
+            TransitInfoRetriever retriever = new TransitInfoRetriever();
+            byte[] data = retriever.fetch();
+            ResponseDecoder decoder = new ResponseDecoder();
+            FeedMessage feed = decoder.decode(data);
 
-        ResponseDecoder decoder = new ResponseDecoder();
-        FeedMessage feed = decoder.decode(data);
-
-        TransitInfoProcessor processor = new TransitInfoProcessor(feed);
-        List<FeedEntity> onRoute = processor.filterByRoute(LINE99);
-        List<FeedEntity> uniqueBuses = processor.filterUniqueBuses(onRoute);
+            TransitInfoProcessor processor = new TransitInfoProcessor(feed);
+            List<FeedEntity> onRoute = processor.filterByRoute(LINE99);
+            uniqueBuses = processor.filterUniqueBuses(onRoute);
+        } catch (Exception e) {
+            fail("Could not retrieve and process route 99 data");
+            return;
+        }
 
         Set<String> seenIds = new HashSet<>();
         for (FeedEntity entity : uniqueBuses) {
