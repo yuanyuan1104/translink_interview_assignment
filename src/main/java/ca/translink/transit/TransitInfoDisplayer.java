@@ -31,10 +31,10 @@ public class TransitInfoDisplayer {
             System.out.println("Vehicle ID: " + busId);
             System.out.println("Route Number: " + routeNumber);
             System.out.println("Direction: " + direction);
-            System.out.println("Timestamp: " + Instant.ofEpochSecond(vp.getTimestamp()));
+            System.out.println("Last Reported Timestamp: " + Instant.ofEpochSecond(vp.getTimestamp()));
             System.out.println("Latitude: " + vp.getPosition().getLatitude());
             System.out.println("Longitude: " + vp.getPosition().getLongitude());
-            System.out.println();
+            System.out.println("----------------------------------------------------");
         }
     }
 }
