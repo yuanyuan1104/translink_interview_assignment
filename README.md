@@ -28,4 +28,4 @@ Three tests:
 
 # 7. Tools / External Assistance
 -Eclipse IDE, Maven, JUnit 5, and the gtfs-realtime-bindings library.
--Google searches for tutorial sites on how to start eclipse maven project, file reading, html request sending, and other topics.
+-Google searches for tutorial sites on how to start eclipse maven project, file reading, https request sending, and other topics.
