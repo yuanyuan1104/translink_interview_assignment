@@ -13,9 +13,8 @@ public class RouteMap {
     private static final Map<String, String> routeNameMap = new HashMap<>();
 
     static {
-        try {
-            InputStream input = RouteMap.class.getClassLoader().getResourceAsStream(ROUTES_FILE);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        try (InputStream input = RouteMap.class.getClassLoader().getResourceAsStream(ROUTES_FILE);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
 
             // Skip the description line at the top
             reader.readLine();

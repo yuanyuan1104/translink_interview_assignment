@@ -12,9 +12,8 @@ public class DirectionMap {
     private static final Map<String, String> directionMap = new HashMap<>();
 
     static {
-        try {
-            InputStream input = DirectionMap.class.getClassLoader().getResourceAsStream(DIRECTIONS_FILE);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        try (InputStream input = DirectionMap.class.getClassLoader().getResourceAsStream(DIRECTIONS_FILE);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
 
             // Skip description at the top
             reader.readLine();
